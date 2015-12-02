@@ -40,19 +40,120 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
+				<section data-background="img/wall.jpg" style="background-color:rgba(0, 0, 0, 0.7)">
 					<h1>API Twitter</h1>
 					<h3></h3>
 					<p>
-						<small>Présenté par l'équipe <a href="http://hakim.se">Web2Control</a></small>
+						<small>Présenté par l'équipe <a href='#'>Web2Control</a></small>
 					</p>
 				</section>
 
-				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
+				<section data-background="img/wall.jpg">
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Principe de Twitter</h2>
+						<p>Service d'échange de messages courts (<a>tweets</a>)</p>
+						<p>Possibilité de <a>follow</a> d'autres utilisateurs</p>
+						<p>Possibilité de <a>retweeter</a> un tweet à ses followers</p>
+						<p>Possibilité de <a>répondre</a> à un tweet</p>
+						<p>Gestion des <a>hashtags</a></p>
+					</section>
+
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Deux API</h2>
+						<p>API <a>REST</a> : Accès à des données via recherche</p>
+						<p>API <a>Streaming</a> : Accès à un flux de données continu</p>
+						<p>REST : 450 req./15 mn</p>
+						<p>Streaming : 1% des messages publiés</p>
+						<p><a>https://dev.twitter.com/rest/tools/console</a></p>
+					</section>
+
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>API Streaming</h2>
+						<p>Public Streams : Données publiques</p>
+						<p>User Streams : Données de l'utilisateur</p>
+						<p>Site Streams : Version multi-utilisateur de User Streams</p>
+						<p style="color: red">Site Streams encore en BETA</p>
+					</section>
+				</section>
+
+				<section data-background="img/wall.jpg">
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Contraites</h2>
+						<p>Données retournées au format JSON</p>
+						<p>Authentification nécessaire via OAuth</p>
+					</section>
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Enregistrement de l'application</h2>
+						<ol>
+							<li>Créer un compte Twitter</li>
+							<li>Aller sur <a>http://apps.twitter.com/new</a></li>
+							<li>Récupérer les clés API et jetons d'accès</li>
+						</ol>
+					</section>
+				</section>
+
+				<section data-background="img/ruby.jpg">
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Récupération des données</h2>
+						<p>Plein de <a href="https://dev.twitter.com/overview/api/twitter-libraries">bibliothèques disponibles</a></p>
+						<p>Exemple avec la RubyGem <a href="https://github.com/tweetstream/tweetstream">TweetStream</a></p>
+						<pre><code class="hljs" data-trim contenteditable>
+require 'tweetstream'
+
+TweetStream.configure do |config|
+	config.consumer_key       = 'MY_KEY'
+	config.consumer_secret    = 'MY_SECRET'
+	config.oauth_token        = 'MY_TOKEN'
+	config.oauth_token_secret = 'MY_SECRET_TOKEN'
+	config.auth_method        = :oauth
+end
+
+#Recherche via mots-clé
+TweetStream::Client.new.track('term1', 'term2') do |status|
+	puts "#{status.text}"
+end
+						</code></pre>
+						<small>Le code n'est pas beaucoup plus compliqué sans la gem</small>
+					</section>
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Talend Open Studio for Big Data</h2>
+						<p>Sélection simplifiées des informations d'un tweet</p>
+						<img src="img/talend.png"/>
+					</section>
+				</section>
+
+				<section data-background="img/library.jpg">
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Informations de l'utilisateur</h2>
+						<p>
+							Nom, identifiant, date de création, nombre de followers, relation avec l'utilisateur courant, état de la géolocalisation,
+							adhésion à certaines communautés, localisation, apparence du profil, dernier tweet, ...
+						</p>
+					</section>
+
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Informations des tweets</h2>
+						<p>
+							Contenu, coordonnées, date d'envoi, identifiant, état de la discussion, langue, lien avec un lieu précis,
+							présence de contenu sensible, lien avec l'utilisateur courant, informations de l'auteur, plainte DMCA, filtrage dans certains pays, ...
+						</p>
+					</section>
+
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Entités supplémentaires</h2>
+						<p>Hashtags, médias, URL et mentions d'autres utilisateurs</p>
+					</section>
+
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2>Informations de lieu</h2>
+						<p>Nom, coordonnées, pays, type, url, adresse, ville, numéro de téléphone, ...</p>
+					</section>
+
+					<section style="background-color:rgba(0, 0, 0, 0.7)">
+						<h2></h2>
+						<p style="color: red">Cette liste n'est pas exhaustives...</p>
+						<p>... contrairement à <a href="https://dev.twitter.com/overview/api">la documentation</a></p>
+					</section>
 				</section>
 
 			</div>
